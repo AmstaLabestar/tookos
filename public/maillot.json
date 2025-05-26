@@ -1,0 +1,80 @@
+{
+  "maillots": [
+    {
+      "id": 1,
+      "nom": "Burkina faso rouge",
+      "prix": 5000,
+      "image": "/images/bf_rouge.jpg"
+    },
+    {
+      "id": 2,
+      "nom": "Burkina faso blanc",
+      "prix": 5000,
+      "image": "/images/bf_white.jpg"
+    },
+    {
+      "id": 3,
+      "nom": "Burkina faso rouge",
+      "prix": 5000,
+      "image": "/images/bf_rouge.jpg"
+    },
+    {
+      "id": 4,
+      "nom": "Burkina faso blanc",
+      "prix": 5000,
+      "image": "/images/bf_white.jpg"
+    },
+    {
+      "id": 5,
+      "nom": "Burkina faso rouge",
+      "prix": 5000,
+      "image": "/images/bf_rouge.jpg"
+    },
+    {
+      "id": 6,
+      "nom": "Burkina faso blanc",
+      "prix": 5000,
+      "image": "/images/bf_white.jpg"
+    },
+    
+    {
+      "id": 7,
+      "nom": "Burkina faso blanc",
+      "prix": 5000,
+      "image": "/images/bf_white.jpg"
+    },
+    
+    {
+      "id": 8,
+      "nom": "Burkina faso blanc",
+      "prix": 5000,
+      "image": "/images/bf_white.jpg"
+    },
+    {
+      "id": 9,
+      "nom": "Burkina faso blanc",
+      "prix": 5000,
+      "image": "/images/bf_white.jpg"
+    },
+    {
+      "id": 10,
+      "nom": "Burkina faso blanc",
+      "prix": 5000,
+      "image": "/images/bf_white.jpg"
+    },
+    {
+      "id": 11,
+      "nom": "Burkina faso blanc",
+      "prix": 5000,
+      "image": "/images/bf_white.jpg"
+    },
+    {
+      "id": 12,
+      "nom": "Burkina faso blanc",
+      "prix": 5000,
+      "image": "/images/bf_white.jpg"
+    }
+
+    
+  ]
+}
