@@ -4,75 +4,87 @@
       "id": 1,
       "nom": "Burkina faso rouge",
       "prix": 5000,
-      "image": "/images/bf_rouge.jpg"
+      "image": "/images/bf_rouge.jpg",
+      "stock":5
     },
     {
       "id": 2,
       "nom": "Burkina faso blanc",
       "prix": 5000,
-      "image": "/images/bf_white.jpg"
+      "image": "/images/bf_white.jpg",
+      "stock":2
     },
     {
       "id": 3,
       "nom": "Burkina faso rouge",
       "prix": 5000,
-      "image": "/images/bf_rouge.jpg"
+      "image": "/images/bf_rouge.jpg",
+      "stock":5
     },
     {
       "id": 4,
       "nom": "Burkina faso blanc",
       "prix": 5000,
-      "image": "/images/bf_white.jpg"
+      "image": "/images/bf_white.jpg",
+      "stock":2
     },
     {
       "id": 5,
-      "nom": "Burkina faso rouge",
+      "nom": "Ajax domicile",
       "prix": 5000,
-      "image": "/images/bf_rouge.jpg"
+      "image": "/images/ajax2.jpg",
+      "stock":5
     },
     {
       "id": 6,
-      "nom": "Burkina faso blanc",
+      "nom": "Lion docmicile",
       "prix": 5000,
-      "image": "/images/bf_white.jpg"
+      "image": "/images/lion1.jpg",
+      "stock":2
     },
     
     {
       "id": 7,
-      "nom": "Burkina faso blanc",
+      "nom": "Liverpool domicile",
       "prix": 5000,
-      "image": "/images/bf_white.jpg"
+      "image": "/images/maillot 1.jpg",
+      "stock":2
     },
     
     {
       "id": 8,
-      "nom": "Burkina faso blanc",
+      "nom": "Bayern exterieur",
       "prix": 5000,
-      "image": "/images/bf_white.jpg"
+      "image": "/images/bayern_3.jpg",
+      "stock":2
     },
     {
       "id": 9,
-      "nom": "Burkina faso blanc",
+      "nom": "Arsenal exterieur",
       "prix": 5000,
-      "image": "/images/bf_white.jpg"
+      "image": "/images/guners2.jpg",
+      "stock":2
     },
     {
       "id": 10,
-      "nom": "Burkina faso blanc",
+      "nom": "Inter Miami exterieur",
       "prix": 5000,
-      "image": "/images/bf_white.jpg"
+      "image": "/images/miami2.jpg",
+      "stock":2
     },
     {
       "id": 11,
-      "nom": "Burkina faso blanc",
+      "nom": "Bayern exterieur",
       "prix": 5000,
-      "image": "/images/bf_white.jpg"
+      "image": "/images/bayern2.jpg",
+      "stock":2
     },
     {
       "id": 12,
-      "nom": "Burkina faso blanc",
+      "nom": "Arsenal domicile ",
       "prix": 5000,
-      "image": "/images/bf_white.jpg"
+      "image": "/images/gunners_1.jpg",
+      "stock":2
     }
 
     

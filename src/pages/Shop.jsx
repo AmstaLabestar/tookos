@@ -1,37 +1,174 @@
+// import React, { useState, useEffect } from 'react';
+// import ProductCard from '../components/ProductCard';
+// import CartSummary from '../components/CartSummary';
+// import OrderModal from '../components/OrderModal';
+// import jsPDF from 'jspdf';
+// import 'jspdf-autotable';
+// import { toast } from 'react-toastify';
+
 // export default function Shop() {
-//   const produits = [
-//     {
-//       id: 1,
-//       nom: "Maillot Real Madrid",
-//       prix: 49.99,
-//       image: "https://via.placeholder.com/200x200?text=Real+Madrid",
-//     },
-//     {
-//       id: 2,
-//       nom: "Maillot PSG",
-//       prix: 44.99,
-//       image: "https://via.placeholder.com/200x200?text=PSG",
-//     },
-//     // ajoute autant de produits que tu veux
-//   ];
+//   const [products, setProducts] = useState([]);
+//   const [cart, setCart] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   // États pour la commande
+//   const [orderName, setOrderName] = useState("");
+//   const [orderAddress, setOrderAddress] = useState("");
+//   const [showModal, setShowModal] = useState(false);
+
+//   useEffect(() => {
+//     fetch('/maillot.json')
+//       .then(res => res.json())
+//       .then(data => {
+//         setProducts(data.maillots);
+//         const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+//         const validCart = savedCart.filter(item =>
+//           data.maillots.some(p => p.id === item.id)
+//         );
+//         setCart(validCart);
+//         setLoading(false);
+//       })
+//       .catch(error => {
+//         console.error("Erreur lors du chargement des maillots :", error);
+//         setLoading(false);
+//       });
+//   }, []);
+
+//   useEffect(() => {
+//     if (!loading) {
+//       localStorage.setItem('cart', JSON.stringify(cart));
+//     }
+//   }, [cart, loading]);
+
+//   const addToCart = (productId) => {
+//     const product = products.find(p => p.id === productId);
+//     const existingItem = cart.find(item => item.id === productId);
+//     const quantityInCart = existingItem ? existingItem.quantity : 0;
+
+//     if (quantityInCart >= product.stock) {
+//       alert("Stock insuffisant !");
+//       return;
+//     }
+
+//     if (existingItem) {
+//       setCart(cart.map(item =>
+//         item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+//       ));
+//     } else {
+//       setCart([...cart, { id: productId, quantity: 1 }]);
+//     }
+//   };
+
+//   const updateQuantity = (productId, delta) => {
+//     const product = products.find(p => p.id === productId);
+//     const item = cart.find(i => i.id === productId);
+//     if (!item) return;
+
+//     const newQuantity = item.quantity + delta;
+//     if (newQuantity < 1) {
+//       setCart(cart.filter(i => i.id !== productId));
+//     } else if (newQuantity <= product.stock) {
+//       setCart(cart.map(i =>
+//         i.id === productId ? { ...i, quantity: newQuantity } : i
+//       ));
+//     }
+//   };
+
+//   const removeFromCart = (productId) => {
+//     setCart(cart.filter(item => item.id !== productId));
+//   };
+
+//   const emptyCart = () => {
+//     setCart([]);
+//   };
+
+// const generatePDFInvoice = () => {
+//   const doc = new jsPDF();
+//   const date = new Date().toLocaleString();
+
+//   doc.setFontSize(16);
+//   doc.text("Facture de commande", 14, 15);
+//   doc.setFontSize(12);
+//   doc.text(`Nom : ${orderName}`, 14, 25);
+//   doc.text(`Adresse : ${orderAddress}`, 14, 32);
+//   doc.text(`Date : ${date}`, 14, 39);
+
+//   let y = 50; // Position de départ pour les lignes produits
+//   doc.text("Produits :", 14, y);
+//   y += 10;
+
+//   cart.forEach(item => {
+//     const product = products.find(p => p.id === item.id);
+//     if (!product) return;
+//     doc.text(
+//       `${product.nom} - ${item.quantity} x ${product.prix} FCFA = ${(item.quantity * product.prix).toFixed(2)} FCFA`,
+//       14,
+//       y
+//     );
+//     y += 8;
+//   });
+
+//   const total = cart.reduce((sum, item) => {
+//     const product = products.find(p => p.id === item.id);
+//     return sum + (product ? item.quantity * product.prix : 0);
+//   }, 0);
+
+//   y += 10;
+//   doc.setFontSize(14);
+//   doc.text(`Total à payer : ${total.toFixed(2)} FCFA`, 14, y);
+
+//   doc.save("facture_commande.pdf");
+// };
+
+
+//   const handleOrderSubmit = (e) => {
+//     e.preventDefault();
+//     console.log("✔️ handleOrderSubmit appelé");
+
+//     if (!orderName || !orderAddress) {
+//   toast.error("Veuillez remplir tous les champs.");
+//   return;
+// }
+
+
+//     generatePDFInvoice();
+//     setShowModal(false);
+//     emptyCart();
+//     toast.success("Commande passée avec succès !");
+//   };
+
+//   if (loading) return <div>Chargement...</div>;
 
 //   return (
 //     <div className="container mt-4">
 //       <h2>Boutique</h2>
 //       <div className="row">
-//         {produits.map((produit) => (
-//           <div key={produit.id} className="col-md-4 mb-4">
-//             <div className="card">
-//               <img src={produit.image} className="card-img-top" alt={produit.nom} />
-//               <div className="card-body">
-//                 <h5 className="card-title">{produit.nom}</h5>
-//                 <p className="card-text">{produit.prix} €</p>
-//                 <button className="btn btn-primary">Ajouter au panier</button>
-//               </div>
-//             </div>
-//           </div>
+//         {products.map((product) => (
+//           <ProductCard key={product.id} product={product} addToCart={addToCart} />
 //         ))}
 //       </div>
+
+//       <CartSummary
+//   cart={cart}
+//   products={products}
+//   updateQuantity={updateQuantity}
+//   removeFromCart={removeFromCart}
+//   emptyCart={emptyCart}
+//   onOrderClick={() => setShowModal(true)} // <-- Ici on l’ajoute
+// />
+
+
+      
+// <OrderModal
+//   show={showModal}
+//   onClose={() => setShowModal(false)}
+//   orderName={orderName}
+//   setOrderName={setOrderName}
+//   orderAddress={orderAddress}
+//   setOrderAddress={setOrderAddress}
+//   handleOrderSubmit={handleOrderSubmit}
+// />
+
 //     </div>
 //   );
 // }
@@ -40,121 +177,25 @@
 
 
 
-import React, { useState, useEffect } from 'react';
 
-export default function Shop() {
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch('/maillot.json')
-      .then(res => res.json())
-      .then(data => {
-        setProducts(data.maillots);
-        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
-        const validCart = savedCart.filter(item => data.maillots.some(p => p.id === item.id));
-        setCart(validCart);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error("Erreur lors du chargement des maillots :", error);
-        setLoading(false);
-      });
-  }, []);
 
-  useEffect(() => {
-    if (!loading) {
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-  }, [cart, loading]);
 
-  const addToCart = (productId) => {
-    const existingItem = cart.find(item => item.id === productId);
-    if (existingItem) {
-      setCart(cart.map(item => item.id === productId ? { ...item, quantity: item.quantity + 1 } : item));
-    } else {
-      setCart([...cart, { id: productId, quantity: 1 }]);
-    }
-  };
 
-  const removeFromCart = (productId) => {
-    setCart(cart.filter(item => item.id !== productId));
-  };
 
-  const increaseQuantity = (productId) => {
-    setCart(cart.map(item => item.id === productId ? { ...item, quantity: item.quantity + 1 } : item));
-  };
 
-  const decreaseQuantity = (productId) => {
-    setCart(cart.map(item => {
-      if (item.id === productId) {
-        if (item.quantity > 1) {
-          return { ...item, quantity: item.quantity - 1 };
-        } else {
-          return null;
-        }
-      }
-      return item;
-    }).filter(item => item !== null));
-  };
 
-  const emptyCart = () => {
-    setCart([]);
-  };
 
-  if (loading) {
-    return <div>Chargement...</div>;
-  }
 
-  return (
-    <div className="container mt-4">
-      <h2>Boutique</h2>
-      <div className="row">
-        {products.map((product) => (
-          <div key={product.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-            <div className="card">
-              <img src={product.image} className="card-img-top" alt={product.nom} />
-              <div className="card-body">
-                <h5 className="card-title">{product.nom}</h5>
-                <p className="card-text">{product.prix.toFixed(2)} FCFA</p>
-                <button className="btn btn-primary" onClick={() => addToCart(product.id)}>Ajouter au panier</button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
 
-      <h3 className="mt-4 text-center">Panier ({cart.reduce((sum, item) => sum + item.quantity, 0)} articles)</h3>
-      {cart.length === 0 ? (
-        <p className="text-center">Votre panier est vide.</p>
-      ) : (
-        <div>
-          {cart.map((item) => {
-            const product = products.find(p => p.id === item.id);
-            if (!product) return null;
-            return (
-              <div key={item.id} className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3 border-bottom pb-2">
-                <span className="mb-2 mb-md-0">{product.nom}</span>
-                <div className="d-flex align-items-center mb-2 mb-md-0">
-                  <button className="btn btn-sm btn-secondary" onClick={() => decreaseQuantity(item.id)}>-</button>
-                  <span className="mx-2">{item.quantity}</span>
-                  <button className="btn btn-sm btn-secondary" onClick={() => increaseQuantity(item.id)}>+</button>
-                </div>
-                <span className="mb-2 mb-md-0">{(item.quantity * product.prix).toFixed(2)} FCFA</span>
-                <button className="btn btn-sm btn-danger" onClick={() => removeFromCart(item.id)}>Retirer</button>
-              </div>
-            );
-          })}
-          <p className="text-end fw-bold fs-5">Total: {cart.reduce((sum, item) => {
-            const product = products.find(p => p.id === item.id);
-            return sum + (product ? item.quantity * product.prix : 0);
-          }, 0).toFixed(2)} €</p>
-          <div className="text-center">
-                <button className="btn btn-warning" onClick={emptyCart}>Vider le panier</button>
-           </div>
-        </div>
-      )}
-    </div>
-  );
-}
+
+ 
+
+
+
+
+
+
+
+
+ 
