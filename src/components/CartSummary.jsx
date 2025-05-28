@@ -8,25 +8,25 @@ export default function CartSummary({ cart, products, updateQuantity, removeFrom
   }, 0);
 
   return (
-    <div>
+    <div className="container">
       <h3 className="mt-4 text-center">Panier ({cart.reduce((s, i) => s + i.quantity, 0)} articles)</h3>
       {cart.length === 0 ? (
         <p className="text-center">Votre panier est vide.</p>
       ) : (
-        <div>
+        <div className="container"style={{maxWidth:300}}>
           {cart.map(item => {
             const product = products.find(p => p.id === item.id);
             if (!product) return null;
             return (
-              <div key={item.id} className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3 border-bottom pb-2">
-                <span>{product.nom}</span>
-                <div className="d-flex align-items-center">
+              <div key={item.id} className=" container d-flex flex-column flex-md-row justify-content-between align-items-center mb-3 border-bottom pb-2"style={{gap:20}}>
+                <span className="tex-center">{product.nom}</span>
+                <div className="d-flex align-items-center ">
                   <button className="btn btn-sm btn-secondary" onClick={() => updateQuantity(item.id, -1)}>-</button>
                   <span className="mx-2">{item.quantity}</span>
                   <button className="btn btn-sm btn-secondary" onClick={() => updateQuantity(item.id, 1)} disabled={item.quantity >= product.stock}>+</button>
                 </div>
                 <span>{(item.quantity * product.prix).toFixed(2)} FCFA</span>
-                <button className="btn btn-sm btn-danger" onClick={() => removeFromCart(item.id)}>Retirer</button>
+                <button className="btn btn-sm btn-danger ms-2" onClick={() => removeFromCart(item.id)} style={{width:100 }}>Retirer</button>
               </div>
             );
           })}
@@ -34,7 +34,7 @@ export default function CartSummary({ cart, products, updateQuantity, removeFrom
           <div className="text-center">
             <button className="btn btn-warning me-2" onClick={emptyCart}>Vider le panier</button>
 
-            <button className="btn btn-primary mt-3" onClick={onOrderClick} >
+            <button className="btn btn-primary me-2" onClick={onOrderClick} >
   Commander
 </button>
             {/* <button className="btn btn-success" data-bs-toggle="modal" data-bs-target="#orderModal">Commander</button> */}

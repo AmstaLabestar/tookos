@@ -17,7 +17,7 @@ export default function Header() {
 });
  // null = non connecté, ou {name: "Daoda"} connecté
 
-  // Pour tester, tu peux activer la connexion temporairement :
+  // Pour tester,  la connexion temporairement :
   // const [user, setUser] = useState({ name: "Daoda Kabore" });
 
   const handleSearchSubmit = (e) => {
